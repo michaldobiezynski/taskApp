@@ -1,5 +1,13 @@
-const mongodb = require("mongodb");
-const MongoClient = mongodb.MongoClient;
+// const mongodb = require("mongodb");
+// const MongoClient = mongodb.MongoClient;
+// const ObjectID = mongodb.ObjectID;
+
+const { MongoClient, ObjectID } = require("mongodb");
+
+const id = new ObjectID();
+console.log(id.id.length);
+console.log(id.getTimestamp());
+console.log(id.toHexString());
 
 const connectionURL =
   "mongodb+srv://michal123:michal123@devconnector.6tf9d.mongodb.net/TaskManager?retryWrites=true&w=majority";
@@ -20,19 +28,19 @@ client.connect((err) => {
 
   //   console.log("Connected correctly!");
   const db = client.db("TaskManager");
-  // db.collection("users").insertOne(
-  //   {
-  //     name: "Michal",
-  //     age: 26,
-  //   },
-  //   (error, result) => {
-  //     if (error) {
-  //       console.log("Unable to insert user.");
-  //     }
-
-  //     console.log(result.ops);
-  //   }
-  // );
+  db.collection("users").insertOne(
+    {
+      _id: id,
+      name: "Viktor",
+      age: 22,
+    },
+    (error, result) => {
+      if (error) {
+        console.log("Unable to insert user.");
+      }
+      console.log(result.ops);
+    }
+  );
   // db.collection("users").insertMany(
   //   [
   //     {
@@ -51,26 +59,26 @@ client.connect((err) => {
   //     console.log(result.ops);
   //   }
   // );
-  db.collection("tasks").insertMany(
-    [
-      {
-        description: "First task",
-        completed: true,
-      },
-      {
-        description: "Second task",
-        completed: false,
-      },
-      {
-        description: "Third task",
-        completed: true,
-      },
-    ],
-    (error, result) => {
-      if (error) {
-        console.log("Unable to insert user.");
-      }
-      console.log(result.ops);
-    }
-  );
+  // db.collection("tasks").insertMany(
+  //   [
+  //     {
+  //       description: "First task",
+  //       completed: true,
+  //     },
+  //     {
+  //       description: "Second task",
+  //       completed: false,
+  //     },
+  //     {
+  //       description: "Third task",
+  //       completed: true,
+  //     },
+  //   ],
+  //   (error, result) => {
+  //     if (error) {
+  //       console.log("Unable to insert user.");
+  //     }
+  //     console.log(result.ops);
+  //   }
+  // );
 });
