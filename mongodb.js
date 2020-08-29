@@ -22,28 +22,19 @@ client.connect((err) => {
   const db = client.db("TaskManager");
 
   // db.collection("users")
-  //   .updateOne(
-  //     {
-  //       _id: new ObjectID("5f3e2af6ad556f829082beb5"),
-  //     },
-  //     {
-  // $set: {
-  //   name: "Mike",
-  // },
-  //         $inc: {
-  //           age: 1,
-  //         },
-  //       }
-  //     )
-  // .then((result) => {
-  //   console.log(result);
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
-
+  //   .deleteMany({
+  //     age: 22,
+  //   })
+  //   .then((result) => {
+  //     console.log(result);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
   db.collection("tasks")
-    .updateMany({ completed: false }, { $set: { completed: true } })
+    .deleteOne({
+      description: "Third task",
+    })
     .then((result) => {
       console.log(result);
     })
