@@ -1,6 +1,4 @@
-// const mongodb = require("mongodb");
-// const MongoClient = mongodb.MongoClient;
-// const ObjectID = mongodb.ObjectID;
+
 
 const { MongoClient, ObjectID } = require("mongodb");
 
@@ -21,24 +19,5 @@ client.connect((err) => {
 
   const db = client.db("TaskManager");
 
-  // db.collection("users")
-  //   .deleteMany({
-  //     age: 22,
-  //   })
-  //   .then((result) => {
-  //     console.log(result);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-  db.collection("tasks")
-    .deleteOne({
-      description: "Third task",
-    })
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  
 });
