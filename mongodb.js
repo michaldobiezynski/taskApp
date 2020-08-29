@@ -21,32 +21,33 @@ client.connect((err) => {
 
   const db = client.db("TaskManager");
 
-  // db.collection("users").findOne(
-  //   { _id: new ObjectID("5f3ed48087a422cd72ff1e3a") },
-  //   (error, user) => {
-  //     err && console.log("Unable to fetch");
+  // db.collection("users")
+  //   .updateOne(
+  //     {
+  //       _id: new ObjectID("5f3e2af6ad556f829082beb5"),
+  //     },
+  //     {
+  // $set: {
+  //   name: "Mike",
+  // },
+  //         $inc: {
+  //           age: 1,
+  //         },
+  //       }
+  //     )
+  // .then((result) => {
+  //   console.log(result);
+  // })
+  // .catch((error) => {
+  //   console.log(error);
+  // });
 
-  //     console.log(user);
-  //   }
-  // );
-  db.collection("users")
-    .find({ age: 26 })
-    .toArray((error, users) => {
-      console.log(users);
-    });
-  db.collection("users")
-    .find({ age: 26 })
-    .count((error, count) => {
-      console.log(count);
-    });
   db.collection("tasks")
-    .find({ _id: new ObjectID("5f3ed6753fc909cddda829ac") })
-    .toArray((error, task) => {
-      console.log(task);
-    });
-  db.collection("tasks")
-    .find({ completed: true })
-    .toArray((error, tasks) => {
-      console.log(tasks);
+    .updateMany({ completed: false }, { $set: { completed: true } })
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 });
