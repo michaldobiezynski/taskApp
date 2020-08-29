@@ -20,6 +20,30 @@ app.post("/users", (req, res) => {
     });
 });
 
+app.get("/users", (req, res) => {
+  User.find({})
+    .then((users) => {
+      res.status(200).send(users);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+
+app.get("/users/:id", (req, res) => {
+  const userId = req.params.id;
+  User.findById(userId)
+    .then((user) => {
+      if (!user.name) {
+        return res.status(404).send();
+      }
+      res.status(200).send(user);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+
 app.post("/tasks", (req, res) => {
   const task = new Task(req.body);
   task
