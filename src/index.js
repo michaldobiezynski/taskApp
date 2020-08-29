@@ -34,10 +34,33 @@ app.get("/users/:id", (req, res) => {
   const userId = req.params.id;
   User.findById(userId)
     .then((user) => {
-      if (!user.name) {
+      if (!user) {
         return res.status(404).send();
       }
       res.status(200).send(user);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+app.get("/tasks", (req, res) => {
+  Task.find({})
+    .then((tasks) => {
+      res.status(200).send(tasks);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+
+app.get("/tasks/:id", (req, res) => {
+  const taskId = req.params.id;
+  Task.findById(taskId)
+    .then((task) => {
+      if (!task) {
+        return res.status(404).send();
+      }
+      res.status(200).send(task);
     })
     .catch((error) => {
       res.status(500).send(error);
