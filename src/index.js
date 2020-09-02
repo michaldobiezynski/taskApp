@@ -16,9 +16,9 @@ const port = process.env.PORT || 3000;
 //   }
 // });
 
-app.use((req, res, next) => {
-  res.status(503).send("Server is in maintanence.");
-});
+// app.use((req, res, next) => {
+//   res.status(503).send("Server is in maintanence.");
+// });
 
 app.use(express.json());
 app.use(userRouter);
